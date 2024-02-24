@@ -7,9 +7,11 @@ using UnityEngine.AI;
 
 public class CharacterAutoMove : MonoBehaviour
 {
+    private const string speedAnimatorParameter = "Speed";
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform destination;
     [SerializeField] TextMeshProUGUI finishText;
+    [SerializeField] private Animator agentAnimator;
 
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private float _interactionPointRadius = 0.5f;
@@ -27,6 +29,8 @@ public class CharacterAutoMove : MonoBehaviour
 
     private void Update()
     {
+        agentAnimator.SetFloat(speedAnimatorParameter, agent.velocity.magnitude);
+
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders);
 
         if (_colliders[1] != null )
