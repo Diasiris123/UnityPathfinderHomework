@@ -20,6 +20,7 @@ public class CharacterController : MonoBehaviour
     {
         Arisa.SetDestination(targetDestination.position);
     }
+
     void Update()
     {
         if(!isSlowed)
@@ -40,25 +41,18 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    void SlowArissa()
+    void ChangeState(bool state)
     {
-        isSlowed = true;
-    }
-
-    void ReturnDefault()
-    {
-        isSlowed = false;
+        isSlowed = state;
     }
 
     public void OnEnable()
     {
-        SlowingBox.instance.SlowStateEvent.AddListener(SlowArissa);
-        SlowingBox.instance.ReturnDefaultEvent.AddListener(ReturnDefault);
+        InteractEventManager.OnInteracted += ChangeState;
     }
 
     public void OnDisable()
     {
-        SlowingBox.instance.SlowStateEvent.RemoveListener(SlowArissa);
-        SlowingBox.instance.ReturnDefaultEvent.RemoveListener(ReturnDefault);
+        InteractEventManager.OnInteracted += ChangeState;
     }
 }
