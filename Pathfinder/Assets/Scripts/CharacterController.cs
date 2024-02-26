@@ -53,6 +53,6 @@ public class CharacterController : MonoBehaviour
 
     public void OnDisable()
     {
-        InteractEventManager.OnInteracted += ChangeState;
+        InteractEventManager.OnInteracted -= ChangeState;
     }
 }
