@@ -3284,6 +3284,7 @@ GameObject:
   - component: {fileID: 1366278142}
   - component: {fileID: 1366278144}
   - component: {fileID: 1366278143}
+  - component: {fileID: 1366278145}
   m_Layer: 5
   m_Name: Finish_text
   m_TagString: Untagged
@@ -3407,6 +3408,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366278141}
   m_CullTransparentMesh: 1
+--- !u!114 &1366278145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366278141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cafcf9ecff0cc45b466268a41cf328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textForArissa: {fileID: 1366278143}
 --- !u!1 &1368046983
 GameObject:
   m_ObjectHideFlags: 0

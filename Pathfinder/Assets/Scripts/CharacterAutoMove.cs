@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 public class CharacterAutoMove : MonoBehaviour
 {
@@ -24,12 +27,19 @@ public class CharacterAutoMove : MonoBehaviour
 
     void Start()
     {
-        agent.SetDestination(destination.position);  
+        agent.SetDestination(destination.position);
+        GameManager.PlayerIsOnTheWay?.Invoke("Arissa is on the way to her destination!");
+        StartCoroutine("Seconds");
     }
-
+    private IEnumerator Seconds()
+    {
+        yield return new WaitForSeconds(7);
+        GameManager.PlayerIsHalfwayThrough?.Invoke("Arissa is halfway through!");
+    }
     private void Update()
     {
         agentAnimator.SetFloat(speedAnimatorParameter, agent.velocity.magnitude);
+
 
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders);
 
@@ -61,7 +71,7 @@ public class CharacterAutoMove : MonoBehaviour
 
     private void SetText()
     {
-        finishText.text = "The Clone has reached its destination!";
+        GameManager.PlayerReachedDestination?.Invoke("The Clone has reached its destination!");
         finishText.enabled = true;
     }
 }
